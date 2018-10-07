@@ -23,3 +23,6 @@ document.getElementById('file-input')
 
 document.getElementById('pdv')
   .addEventListener('change', generarGrilla, false);
+
+document.getElementById('tools')
+  .addEventListener('click', mostrarHerramientas, false);

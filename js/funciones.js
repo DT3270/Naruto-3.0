@@ -227,3 +227,9 @@ function leerArchivo(e) {
   lector.readAsText(archivo);
 }; //end-function
 
+function  mostrarHerramientas() {
+  localStorage.clear();
+  eliminarGrilla();
+  paquetes.length = 0;
+  productos.length = 0;
+};//end-function
