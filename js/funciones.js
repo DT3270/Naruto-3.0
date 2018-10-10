@@ -184,6 +184,14 @@ function integrarGrilla(archivoIn) {
   } //end-for
 }; //end-function
 
+function cargarDatosArch(nombre, fecha, usuario) {
+  var texto = [];
+  texto.push('<small style="margin-right:4px">El archivo <b>', nombre, '</b></small>')      
+  texto.push('<small style="margin-right:4px">fue cargado por <b>', usuario, '</b></small>')      
+  texto.push('<p><small style="margin-right:4px">Fecha: <b>', fecha, '</b></small></p>')      
+  document.getElementById("inputData").innerHTML = texto.join('');
+};
+
 function leerPreCargado() {
 
     localStorage.setItem("contenido", contenido);
@@ -203,6 +211,12 @@ function leerArchivo(e) {
   var archivo = e.target.files[0]; // de aca saco la información del archivo que cargue
   if (!archivo) {
     return;
+  } else {
+    var usr = document.getElementById("usr-input")
+    cargarDatosArch(archivo.name, archivo.lastModifiedDate.toLocaleDateString(), usr.value)
+    localStorage.setItem("archivo", archivo.name)
+    localStorage.setItem("fecha", archivo.lastModifiedDate.toLocaleDateString())
+    localStorage.setItem("usuario", usr.value)
   }
 
   var lector = new FileReader();
@@ -229,6 +243,9 @@ function leerArchivo(e) {
 
 function  mostrarHerramientas() {
   localStorage.clear();
+  var texto = [];
+  texto.push('<small style="margin-right:4px"></small>')      
+  document.getElementById("inputData").innerHTML = texto.join('');
   eliminarGrilla();
   paquetes.length = 0;
   productos.length = 0;
